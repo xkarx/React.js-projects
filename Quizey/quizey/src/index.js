@@ -4,6 +4,8 @@ import "./assets/style.css";
 
 import quizService from "./quizService";
 
+import QuestionBox from "./components/QuestionBox"
+
 class Quizey extends Component{
     state = {
         questionBank : [] //Instantiating local state within the array
@@ -30,11 +32,19 @@ class Quizey extends Component{
                {//“How somebody is different?? Not different but genius?? (Find the answer, that's my quiz for you... No, jokers it's to easy with jokers)”
                }
                {// to render componentDidMount()
-                    this.state.questionBank.length > 0 && 
-                    this.state.questionBank.map(
-                        ({question, answers, correct, questionId}) => <h4>{question}</h4>
-                    )
                }
+
+               {    this.state.questionBank.length > 0 && 
+                    this.state.questionBank.map(
+                        ({question, answers, correct, questionId}) => (
+                            <QuestionBox 
+                                question = {question} 
+                                options = {answers} 
+                                key={questionId}
+                            />
+                        )
+                    
+                    )}
             </div>
         );
     }
